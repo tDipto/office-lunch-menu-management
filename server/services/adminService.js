@@ -70,6 +70,10 @@ exports.verifyAdmin = async (username) => {
       where: { username },
     });
 
+    if (admin.verifyAdmin !== "yes") {
+      throw new Error("Unauthorized access");
+    }
+
     const newAdminData = {
       username: admin?.username,
       verifyAdmin: admin?.verifyAdmin,

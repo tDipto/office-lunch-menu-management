@@ -15,10 +15,18 @@ model Admin {
   verifyAdmin  String   @default("no")
 }
 
-model employee {
+model Employee {
   id           String   @id @default(uuid())
   username     String   @unique
   email        String   @unique
   password     String
   createdAt    DateTime @default(now())
+}
+
+
+model Menu {
+  id        String       @id @default(uuid())
+  date      DateTime    @unique
+  options   String[]
+  createdAt DateTime  @default(now())
 }

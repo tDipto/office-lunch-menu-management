@@ -9,7 +9,7 @@ exports.registerEmployee = async (data) => {
     throw new Error("Username, email and password are required");
   }
 
-  const existingEmployee = await prisma.employee.findUnique({
+  const existingEmployee = await prisma.Employee.findUnique({
     where: { email },
   });
 
@@ -21,7 +21,7 @@ exports.registerEmployee = async (data) => {
     const saltRounds = 14;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-    const newEmployee = await prisma.employee.create({
+    const newEmployee = await prisma.Employee.create({
       data: {
         username,
         email,
@@ -39,7 +39,7 @@ exports.loginEmployee = async (data) => {
   if (!email || !password) {
     throw new Error("email and password are required");
   }
-  const employee = await prisma.employee.findUnique({
+  const employee = await prisma.Employee.findUnique({
     where: { email },
   });
 
@@ -63,7 +63,7 @@ exports.loginEmployee = async (data) => {
 
 exports.verifyEmployee = async (email) => {
   try {
-    const employee = await prisma.employee.findUnique({
+    const employee = await prisma.Employee.findUnique({
       where: { email },
     });
 

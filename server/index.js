@@ -12,9 +12,11 @@ app.use(express.json());
 
 const adminRoute = require("./routes/adminRoute");
 const userRoute = require("./routes/userRoute");
+const menuRoute = require("./routes/menuRoute");
 
 app.use("/api/v1/admin/auth", adminRoute);
 app.use("/api/v1/employee/auth", userRoute);
+app.use("/api/v1/menu", menuRoute);
 
 app.get("/", (req, res, next) => {
   res
