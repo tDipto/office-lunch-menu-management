@@ -21,3 +21,12 @@ exports.getMenuByDate = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+exports.editMenu = async (req, res) => {
+  try {
+    const updatedMenu = await menuService.editMenu(req.body);
+    res.status(200).json(updatedMenu);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};

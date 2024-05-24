@@ -42,3 +42,33 @@ exports.getMenuByDate = async (data) => {
     throw new Error("Error fetching menu: " + error.message);
   }
 };
+
+exports.editMenu = async (data) => {
+  const { date, options } = data;
+
+  if (!date || !options) {
+    throw new Error("Items and Date are required");
+  }
+
+  const formattedDate = `${date}T00:00:00Z`;
+
+  const existingMenu = await prisma.menu.findFirst({
+    where: { date: formattedDate },
+  });
+
+  if (!existingMenu) {
+    throw new Error("Menu for this date does not exist");
+  }
+
+  try {
+    const updatedMenu = await prisma.menu.update({
+      where: { id: existingMenu.id },
+      data: {
+        options,
+      },
+    });
+    return updatedMenu;
+  } catch (error) {
+    throw new Error("Error updating menu: " + error.message);
+  }
+};
