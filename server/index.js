@@ -10,6 +10,10 @@ const prisma = new PrismaClient();
 app.use(cors());
 app.use(express.json());
 
+const adminRoute = require("./routes/adminRoute");
+
+app.use("/api/v1/admin/auth", adminRoute);
+
 app.get("/", (req, res, next) => {
   res
     .status(200)
