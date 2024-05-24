@@ -22,3 +22,11 @@ model employee {
   password     String
   createdAt    DateTime @default(now())
 }
+
+
+model Menu {
+  id        String       @id @default(uuid())
+  date      DateTime    @unique
+  options   String[]
+  createdAt DateTime  @default(now())
+}
