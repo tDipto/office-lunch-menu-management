@@ -7,3 +7,6 @@ CREATE TABLE "Admin" (
 
     CONSTRAINT "Admin_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Admin_username_key" ON "Admin"("username");
