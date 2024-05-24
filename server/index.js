@@ -11,8 +11,10 @@ app.use(cors());
 app.use(express.json());
 
 const adminRoute = require("./routes/adminRoute");
+const userRoute = require("./routes/userRoute");
 
 app.use("/api/v1/admin/auth", adminRoute);
+app.use("/api/v1/employee/auth", userRoute);
 
 app.get("/", (req, res, next) => {
   res

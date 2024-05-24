@@ -6,6 +6,10 @@ const jwt = require("jsonwebtoken");
 exports.registerAdmin = async (data) => {
   const { username, password } = data;
 
+  if (!username || !password) {
+    throw new Error("Username or password are required");
+  }
+
   const existingAdmin = await prisma.admin.findUnique({
     where: { username },
   });
@@ -34,6 +38,10 @@ exports.registerAdmin = async (data) => {
 
 exports.loginAdmin = async (data) => {
   const { username, password } = data;
+  if (!username || !password) {
+    throw new Error("Username and password are required");
+  }
+
   const admin = await prisma.admin.findUnique({
     where: { username },
   });
