@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-const { postMenu } = require("../controller/menuController");
+const { postMenu, getMenuByDate } = require("../controller/menuController");
 
-router.route("/").post(postMenu);
+router.route("/").post(postMenu).get(getMenuByDate);
 
 module.exports = router;

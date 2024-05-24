@@ -28,3 +28,17 @@ exports.postMenu = async (data) => {
     throw new Error("Error posting menu: " + error.message);
   }
 };
+
+exports.getMenuByDate = async (data) => {
+  const { date } = data;
+  try {
+    const formattedDate = `${date}T00:00:00Z`;
+    const menu = await prisma.menu.findFirst({
+      where: { date: formattedDate },
+    });
+
+    return menu;
+  } catch (error) {
+    throw new Error("Error fetching menu: " + error.message);
+  }
+};
