@@ -32,7 +32,8 @@ exports.registerAdmin = async (data) => {
   }
 };
 
-exports.loginAdmin = async (username, password) => {
+exports.loginAdmin = async (data) => {
+  const { username, password } = data;
   const admin = await prisma.admin.findUnique({
     where: { username },
   });
@@ -53,4 +54,21 @@ exports.loginAdmin = async (username, password) => {
   );
 
   return { token };
+};
+
+exports.verifyAdmin = async (username) => {
+  try {
+    const admin = await prisma.admin.findUnique({
+      where: { username },
+    });
+
+    const newAdminData = {
+      username: admin?.username,
+      verifyAdmin: admin?.verifyAdmin,
+    };
+
+    return newAdminData;
+  } catch (error) {
+    throw new Error(error.message);
+  }
 };
