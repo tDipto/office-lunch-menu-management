@@ -1,9 +1,17 @@
 const express = require("express");
 const router = express.Router();
 
-const { postChoice } = require("../controller/choiceController");
+const {
+  postChoice,
+  updateChoice,
+  getChoice,
+} = require("../controller/choiceController");
 const { verifyEmployeeToken } = require("../middlewares/verifyEmployeeToken");
 
-router.route("/").post(verifyEmployeeToken, postChoice);
+router
+  .route("/")
+  .post(verifyEmployeeToken, postChoice)
+  .put(verifyEmployeeToken, updateChoice)
+  .get(verifyEmployeeToken, getChoice);
 
 module.exports = router;
