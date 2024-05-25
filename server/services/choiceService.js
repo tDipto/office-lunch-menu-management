@@ -132,3 +132,31 @@ exports.getChoice = async (employeeId, menuId) => {
     throw new Error("Error retrieving choice: " + error.message);
   }
 };
+
+exports.getAllChoices = async (body) => {
+  const { menuId } = body;
+  if (!menuId) {
+    throw new Error("Menu ID is required");
+  }
+
+  try {
+    const choices = await prisma.choice.findMany({
+      where: { menuId },
+      include: {
+        employee: {
+          select: {
+            id: true,
+          },
+        },
+      },
+    });
+
+    if (!choices || choices.length === 0) {
+      throw new Error("No choices found for the specified menu");
+    }
+
+    return choices;
+  } catch (error) {
+    throw new Error("Error retrieving choices: " + error.message);
+  }
+};

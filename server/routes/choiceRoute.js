@@ -5,9 +5,10 @@ const {
   postChoice,
   updateChoice,
   getChoice,
+  getAllChoices,
 } = require("../controller/choiceController");
 const { verifyEmployeeToken } = require("../middlewares/verifyEmployeeToken");
-
+router.route("/allChoice").get(getAllChoices);
 router
   .route("/")
   .post(verifyEmployeeToken, postChoice)

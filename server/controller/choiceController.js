@@ -43,3 +43,12 @@ exports.getChoice = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
+exports.getAllChoices = async (req, res) => {
+  try {
+    const choices = await choiceService.getAllChoices(req.body);
+    res.status(200).json(choices);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
