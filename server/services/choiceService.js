@@ -146,6 +146,7 @@ exports.getAllChoices = async (body) => {
         employee: {
           select: {
             id: true,
+            username: true,
           },
         },
       },
