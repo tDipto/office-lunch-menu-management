@@ -21,6 +21,8 @@ model Employee {
   email        String   @unique
   password     String
   createdAt    DateTime @default(now())
+
+  choices  Choice[]
 }
 
 
@@ -29,4 +31,19 @@ model Menu {
   date      DateTime    @unique
   options   String[]
   createdAt DateTime  @default(now())
+
+  choices   Choice[]
+}
+
+
+model Choice {
+  id         String      @id @default(uuid())
+  employee   Employee @relation(fields: [employeeId], references: [id])
+  employeeId String
+  menu       Menu     @relation(fields: [menuId], references: [id])
+  menuId     String
+  choices     String[]
+
+  @@unique([employeeId, menuId])
+
 }
