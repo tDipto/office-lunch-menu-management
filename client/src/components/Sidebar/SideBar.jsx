@@ -128,7 +128,7 @@ const SideBar = () => {
           </ListItemSuffix>
         </ListItem> */}
 
-        <Link to="/login">
+        <Link to="/">
           <ListItem>
             <ListItemPrefix>
               <UserCircleIcon className="h-5 w-5" />
@@ -158,6 +158,14 @@ const SideBar = () => {
               <UserCircleIcon className="h-5 w-5" />
             </ListItemPrefix>
             Menu Select
+          </ListItem>
+        </Link>
+        <Link to="/profile">
+          <ListItem>
+            <ListItemPrefix>
+              <UserCircleIcon className="h-5 w-5" />
+            </ListItemPrefix>
+            Profile
           </ListItem>
         </Link>
         <Link to="/login">
