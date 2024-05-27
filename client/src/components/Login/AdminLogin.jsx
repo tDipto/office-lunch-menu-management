@@ -7,6 +7,7 @@ import {
   Input,
   Typography,
 } from "@material-tailwind/react";
+import axios from "axios";
 import { useFormik } from "formik";
 import React from "react";
 
@@ -14,11 +15,21 @@ import { Link } from "react-router-dom";
 const AdminLogin = () => {
   const formik = useFormik({
     initialValues: {
-      usename: "",
+      username: "",
       password: "",
     },
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async (values) => {
+      //   alert(JSON.stringify(values, null, 2));
+      try {
+        const result = await axios.post(
+          "http://localhost:5000/api/v1/admin/auth/login",
+          values
+        );
+        const token = await result?.data;
+        console.log(token);
+      } catch (e) {
+        console.error(e.response.data);
+      }
     },
   });
   return (
@@ -35,7 +46,7 @@ const AdminLogin = () => {
       <form onSubmit={formik.handleSubmit}>
         <CardBody className="flex flex-col gap-4">
           <Input
-            id="usename"
+            id="username"
             onChange={formik.handleChange}
             value={formik.values.email}
             label="UserName"

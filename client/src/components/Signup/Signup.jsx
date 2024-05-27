@@ -7,6 +7,7 @@ import {
   Input,
   Typography,
 } from "@material-tailwind/react";
+import axios from "axios";
 import { useFormik } from "formik";
 
 import React from "react";
@@ -18,8 +19,20 @@ const Signup = () => {
       email: "",
       password: "",
     },
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async (values) => {
+      // alert(JSON.stringify(values, null, 2));
+      // console.log(JSON.stringify(values));
+
+      try {
+        const result = await axios.post(
+          "http://localhost:5000/api/v1/employee/auth/register",
+          values
+        );
+        const token = await result?.data;
+        console.log(token);
+      } catch (e) {
+        console.error(e.response.data);
+      }
     },
   });
   return (
