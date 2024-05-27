@@ -11,8 +11,9 @@ import axios from "axios";
 import { useFormik } from "formik";
 
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Login = () => {
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -25,8 +26,10 @@ const Login = () => {
           "http://localhost:5000/api/v1/employee/auth/login",
           values
         );
-        const token = await result?.data;
-        console.log(token);
+        const res = await result?.data;
+        // console.log(res.token);
+        localStorage.setItem("token", res.token);
+        navigate("/");
       } catch (e) {
         console.error(e.response.data);
       }

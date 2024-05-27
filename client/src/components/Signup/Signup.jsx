@@ -11,8 +11,10 @@ import axios from "axios";
 import { useFormik } from "formik";
 
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Signup = () => {
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -29,6 +31,7 @@ const Signup = () => {
           values
         );
         const token = await result?.data;
+        navigate("/login");
         console.log(token);
       } catch (e) {
         console.error(e.response.data);
