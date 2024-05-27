@@ -144,7 +144,7 @@ const SideBar = () => {
             See All Employee
           </ListItem>
         </Link>
-        <Link to="/login">
+        <Link to="/menuChoose">
           <ListItem>
             <ListItemPrefix>
               <UserCircleIcon className="h-5 w-5" />
@@ -152,7 +152,7 @@ const SideBar = () => {
             Menu Choose
           </ListItem>
         </Link>
-        <Link to="/login">
+        <Link to="/menu">
           <ListItem>
             <ListItemPrefix>
               <UserCircleIcon className="h-5 w-5" />
