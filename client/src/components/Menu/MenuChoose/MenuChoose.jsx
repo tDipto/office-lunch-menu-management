@@ -36,7 +36,7 @@ const MenuChoose = () => {
   useEffect(() => {
     const fetchMenu = async () => {
       try {
-        console.log(currentDate);
+        // console.log(currentDate);
         const res = await axios.get(
           `http://localhost:5000/api/v1/menu/${currentDate}`
         );

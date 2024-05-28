@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 
 const Menu = () => {
   const [items, setItems] = useState([]);
+  const [showItems, setShowItems] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [currentDate, setCurrentDate] = useState("");
 
@@ -62,34 +63,71 @@ const Menu = () => {
         setItems([]);
         //   setUser(res.data);
       } catch (error) {
+        setItems([]);
+
         console.error("Error post menu:", error.message);
       }
     };
     postMenu();
   };
-  return (
-    <div className="p-4">
-      <div>
-        <Button onClick={() => handleDateClick(0)}>Today</Button>
 
-        <Button onClick={() => handleDateClick(1)}>Tomorrow</Button>
+  useEffect(() => {
+    const fetchMenu = async () => {
+      try {
+        // console.log(currentDate);
+        const res = await axios.get(
+          `http://localhost:5000/api/v1/menu/${currentDate}`
+        );
+        // console.log(res?.data?.options);
+        const newItems = res?.data?.options;
+
+        // Update the state with the new items
+        setShowItems(newItems);
+      } catch (error) {
+        setShowItems([]);
+        console.error("Error fetching user data:", error.message);
+      }
+    };
+    fetchMenu();
+  }, [currentDate]);
+  return (
+    <div className="p-4 flex">
+      <div className="flex-1">
+        <div>
+          <Button onClick={() => handleDateClick(0)}>Today</Button>
+          <Button onClick={() => handleDateClick(1)}>Tomorrow</Button>
+        </div>
+        <Button onClick={handleButtonClick}>Add to List</Button>
+        <Button onClick={handleSubmitClick}>Submit</Button>
+        <div className="w-72 mb-4 mt-5">
+          <Input
+            label="Add Item"
+            value={inputValue}
+            onChange={handleInputChange}
+          />
+        </div>
+        <Card className="w-96 mb-4">
+          <List>
+            {items.map((item, index) => (
+              <ListItem key={index}>{item}</ListItem>
+            ))}
+          </List>
+        </Card>
       </div>
-      <Button onClick={handleButtonClick}>Add to List</Button>
-      <Button onClick={handleSubmitClick}>Submit</Button>
-      <div className="w-72 mb-4 mt-5">
-        <Input
-          label="Add Item"
-          value={inputValue}
-          onChange={handleInputChange}
-        />
+
+      <div className="flex-1 ml-4">
+        <h2>All Items For {currentDate}</h2>
+        {console.log(showItems)}
+        {showItems.length > 0 ? (
+          <ul>
+            {showItems.map((product) => (
+              <li>{product}</li>
+            ))}
+          </ul>
+        ) : (
+          <p>No products available</p>
+        )}
       </div>
-      <Card className="w-96 mb-4">
-        <List>
-          {items.map((item, index) => (
-            <ListItem key={index}>{item}</ListItem>
-          ))}
-        </List>
-      </Card>
     </div>
   );
 };
