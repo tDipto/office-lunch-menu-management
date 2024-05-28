@@ -7,6 +7,7 @@ import Menu from "../components/Menu/Menu";
 import MenuChoose from "../components/Menu/MenuChoose/MenuChoose";
 import Profile from "../components/Profile/Profile";
 import Signup from "../components/Signup/Signup";
+import TotalItems from "../components/TotalItems/TotalItems";
 import Main from "../layout/Main";
 
 const AppRoutes = () => {
@@ -19,6 +20,7 @@ const AppRoutes = () => {
           <Route path="menu" element={<Menu />} />
           <Route path="menuChoose" element={<MenuChoose />} />
           <Route path="/employee" element={<EmployeeList />} />
+          <Route path="/totalItems" element={<TotalItems />} />
         </Route>
 
         <Route path="/login" element={<Login />} />

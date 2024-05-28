@@ -131,7 +131,7 @@ const SideBar = () => {
           </ListItemSuffix>
         </ListItem> */}
 
-        <Link to="/">
+        <Link to="/totalItems">
           <ListItem>
             <ListItemPrefix>
               <UserCircleIcon className="h-5 w-5" />
