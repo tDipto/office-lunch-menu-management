@@ -139,7 +139,7 @@ const SideBar = () => {
             Total Items
           </ListItem>
         </Link>
-        <Link to="/login">
+        <Link to="/employee">
           <ListItem>
             <ListItemPrefix>
               <UserCircleIcon className="h-5 w-5" />

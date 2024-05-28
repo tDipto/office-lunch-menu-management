@@ -10,8 +10,10 @@ exports.postMenu = async (req, res) => {
 };
 
 exports.getMenuByDate = async (req, res) => {
+  const date = req.params.id;
+  // console.log(menuId);
   try {
-    const menu = await menuService.getMenuByDate(req.body);
+    const menu = await menuService.getMenuByDate(date);
     if (!menu) {
       res.status(404).json({ error: "Menu not found" });
       return;
