@@ -8,16 +8,18 @@ import {
 import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../contexts/AuthContext";
 const Profile = () => {
-  const { user } = useContext(AuthContext);
+  const { user, admin } = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState();
+  const [adminInfo, setAdminInfo] = useState();
 
   useEffect(() => {
     setUserInfo(user);
-  }, [user]);
+    setAdminInfo(admin);
+  }, [user, admin]);
 
   return (
     <Card className="w-96">
-      {/* {console.log(user)} */}
+      {/* {console.log(admin)} */}
       {/* <CardHeader floated={false} className="h-80">
         <img
           src="https://docs.material-tailwind.com/img/team-3.jpg"
@@ -29,7 +31,7 @@ const Profile = () => {
           {userInfo?.username}
         </Typography>
         <Typography color="blue-gray" className="font-medium" textGradient>
-          {userInfo?.email}
+          {userInfo?.email} {userInfo?.verifyAdmin}
         </Typography>
       </CardBody>
       <CardFooter className="flex justify-center gap-7 pt-2">

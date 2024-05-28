@@ -4,6 +4,7 @@ import AuthContext from "../../contexts/AuthContext";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [admin, setAdmin] = useState(null);
   //   const userToken = localStorage.getItem("token");
 
   useEffect(() => {
@@ -30,9 +31,36 @@ const AuthProvider = ({ children }) => {
     // }
   }, []);
 
+  useEffect(() => {
+    const fetchAdminData = async () => {
+      const userToken = localStorage.getItem("Atoken");
+      // console.log(userToken);
+      try {
+        const res = await axios.get(
+          "http://localhost:5000/api/v1/admin/auth/verify",
+          {
+            headers: {
+              Authorization: userToken,
+            },
+          }
+        );
+        // console.log(res.data);
+        setAdmin(res.data);
+      } catch (error) {
+        console.error("Error fetching user data:", error.message);
+      }
+    };
+
+    // if (userToken) {
+    fetchAdminData();
+    // }
+  }, []);
+
   const authInfo = {
     user,
     setUser,
+    admin,
+    setAdmin,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

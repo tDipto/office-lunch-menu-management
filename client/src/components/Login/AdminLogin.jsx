@@ -29,7 +29,7 @@ const AdminLogin = () => {
         );
         const res = await result?.data;
         // console.log(res.token);
-        localStorage.setItem("token", res.token);
+        localStorage.setItem("Atoken", res.token);
         navigate("/");
       } catch (e) {
         console.error(e.response.data);

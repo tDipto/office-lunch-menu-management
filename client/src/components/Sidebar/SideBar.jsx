@@ -12,6 +12,7 @@ import React from "react";
 const SideBar = () => {
   const handleLogout = () => {
     localStorage.removeItem("token"); // Replace
+    localStorage.removeItem("Atoken"); // Replace
   };
   // const [open, setOpen] = React.useState(0);
 
