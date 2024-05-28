@@ -5,6 +5,7 @@ import AuthContext from "../../contexts/AuthContext";
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [admin, setAdmin] = useState(null);
+  const [loading, setLoading] = useState(true);
   //   const userToken = localStorage.getItem("token");
 
   useEffect(() => {
@@ -23,6 +24,8 @@ const AuthProvider = ({ children }) => {
         setUser(res.data);
       } catch (error) {
         console.error("Error fetching user data:", error.message);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -48,6 +51,8 @@ const AuthProvider = ({ children }) => {
         setAdmin(res.data);
       } catch (error) {
         console.error("Error fetching user data:", error.message);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -61,6 +66,7 @@ const AuthProvider = ({ children }) => {
     setUser,
     admin,
     setAdmin,
+    loading,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

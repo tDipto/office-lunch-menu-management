@@ -63,11 +63,11 @@ const EmployeeList = () => {
 
     // if (us fetchMenu();erToken) {
     fetchMenu();
-    console.log(menuId);
+    // console.log(menuId);
     if (menuId) {
       fetchUserData();
     } else {
-      console.log("DEBUG");
+      // console.log("DEBUG");
       setUser();
     }
     // }

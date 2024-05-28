@@ -8,7 +8,7 @@ import {
 import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../contexts/AuthContext";
 const Profile = () => {
-  const { user, admin } = useContext(AuthContext);
+  const { user, admin, loading } = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState();
   const [adminInfo, setAdminInfo] = useState();
 
