@@ -2,26 +2,34 @@ import {
   Card,
   CardBody,
   CardFooter,
-  CardHeader,
   Tooltip,
   Typography,
 } from "@material-tailwind/react";
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import AuthContext from "../../contexts/AuthContext";
 const Profile = () => {
+  const { user } = useContext(AuthContext);
+  const [userInfo, setUserInfo] = useState();
+
+  useEffect(() => {
+    setUserInfo(user);
+  }, [user]);
+
   return (
     <Card className="w-96">
-      <CardHeader floated={false} className="h-80">
+      {/* {console.log(user)} */}
+      {/* <CardHeader floated={false} className="h-80">
         <img
           src="https://docs.material-tailwind.com/img/team-3.jpg"
           alt="profile-picture"
         />
-      </CardHeader>
+      </CardHeader> */}
       <CardBody className="text-center">
         <Typography variant="h4" color="blue-gray" className="mb-2">
-          Natalie Paisley
+          {userInfo?.username}
         </Typography>
         <Typography color="blue-gray" className="font-medium" textGradient>
-          CEO / Co-Founder
+          {userInfo?.email}
         </Typography>
       </CardBody>
       <CardFooter className="flex justify-center gap-7 pt-2">

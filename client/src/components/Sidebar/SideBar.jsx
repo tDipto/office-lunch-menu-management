@@ -10,6 +10,9 @@ import {
 } from "@material-tailwind/react";
 import React from "react";
 const SideBar = () => {
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // Replace
+  };
   // const [open, setOpen] = React.useState(0);
 
   // const handleOpen = (value) => {
@@ -184,7 +187,7 @@ const SideBar = () => {
             Signup
           </ListItem>
         </Link>
-        <Link to="/signup">
+        <Link to="/login" onClick={handleLogout}>
           <ListItem>
             <ListItemPrefix>
               <UserCircleIcon className="h-5 w-5" />

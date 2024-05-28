@@ -10,9 +10,12 @@ import {
 import axios from "axios";
 import { useFormik } from "formik";
 
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import AuthContext from "../../contexts/AuthContext";
+
 const Login = () => {
+  const { setUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
@@ -28,10 +31,12 @@ const Login = () => {
         );
         const res = await result?.data;
         // console.log(res.token);
+
         localStorage.setItem("token", res.token);
+
         navigate("/");
       } catch (e) {
-        console.error(e.response.data);
+        console.error(e.response?.data);
       }
     },
   });

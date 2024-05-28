@@ -1,10 +1,41 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import AuthContext from "../../contexts/AuthContext";
 
-const AuthProvider = () => {
+const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  //   const userToken = localStorage.getItem("token");
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const userToken = localStorage.getItem("token");
+      try {
+        const res = await axios.get(
+          "http://localhost:5000/api/v1/employee/auth/verify",
+          {
+            headers: {
+              Authorization: userToken,
+            },
+          }
+        );
+        // console.log(res.data);
+        setUser(res.data);
+      } catch (error) {
+        console.error("Error fetching user data:", error.message);
+      }
+    };
+
+    // if (userToken) {
+    fetchUserData();
+    // }
+  }, []);
+
+  const authInfo = {
+    user,
+    setUser,
+  };
   return (
-    <div>
-      <h1>ss</h1>
-    </div>
+    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );
 };
 
