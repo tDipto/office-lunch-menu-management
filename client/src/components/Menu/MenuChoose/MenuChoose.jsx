@@ -5,7 +5,9 @@ import {
   List,
   ListItem,
 } from "@material-tailwind/react";
-import React, { useState } from "react";
+import axios from "axios";
+
+import React, { useEffect, useState } from "react";
 
 const MenuChoose = () => {
   const [items, setItems] = useState([
@@ -18,6 +20,27 @@ const MenuChoose = () => {
   //   const handleInputChange = (event) => {
   //     setInputValue(event.target.value);
   //   };
+
+  useEffect(() => {
+    const fetchMenu = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:5000/api/v1/menu/2024-06-21"
+        );
+        // console.log(res.data.options);
+        const newItems = res.data.options.map((option) => ({
+          text: option,
+          checked: false,
+        }));
+
+        // Update the state with the new items
+        setItems(newItems);
+      } catch (error) {
+        console.error("Error fetching user data:", error.message);
+      }
+    };
+    fetchMenu();
+  }, []);
 
   const handleButtonClick = () => {
     if (inputValue.trim() !== "") {
