@@ -15,4 +15,6 @@ router
   .put(verifyEmployeeToken, updateChoice)
   .get(verifyEmployeeToken, getChoice);
 
+router.route("/getUserChoice").post(verifyEmployeeToken, getChoice);
+
 module.exports = router;

@@ -172,7 +172,7 @@ const SideBar = () => {
             Profile
           </ListItem>
         </Link>
-        <Link to="/login">
+        {/* <Link to="/login">
           <ListItem>
             <ListItemPrefix>
               <UserCircleIcon className="h-5 w-5" />
@@ -187,7 +187,7 @@ const SideBar = () => {
             </ListItemPrefix>
             Signup
           </ListItem>
-        </Link>
+        </Link> */}
         <Link to="/login" onClick={handleLogout}>
           <ListItem>
             <ListItemPrefix>

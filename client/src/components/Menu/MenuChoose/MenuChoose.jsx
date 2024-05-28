@@ -6,12 +6,14 @@ import {
   ListItem,
 } from "@material-tailwind/react";
 import axios from "axios";
-
 import React, { useEffect, useState } from "react";
 
 const MenuChoose = () => {
   const [items, setItems] = useState([]);
+  const [menuId, setMenuId] = useState([]);
+  const [userItem, setUserItem] = useState([]);
   const [inputValue, setInputValue] = useState("");
+  const [selectedItems, setSelectedItems] = useState([]);
 
   const [currentDate, setCurrentDate] = useState("");
 
@@ -36,30 +38,87 @@ const MenuChoose = () => {
   useEffect(() => {
     const fetchMenu = async () => {
       try {
-        // console.log(currentDate);
         const res = await axios.get(
           `http://localhost:5000/api/v1/menu/${currentDate}`
         );
-        // console.log(currentDate);
+        setMenuId(res?.data?.id);
         const newItems = res?.data?.options.map((option) => ({
           text: option,
           checked: false,
         }));
 
-        // Update the state with the new items
         setItems(newItems);
       } catch (error) {
         setItems([]);
         console.error("Error fetching user data:", error.message);
       }
     };
+    const getMenu = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        // console.log(menuId);
+        const res = await axios.post(
+          `http://localhost:5000/api/v1/choice/getUserChoice`,
+          { menuId: menuId },
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        );
+        setUserItem(res?.data?.choices);
+        // console.log(res.data);
+      } catch (error) {
+        // setItems([]);
+        setUserItem([]);
+        console.error("Error fetching user data:", error.message);
+      }
+    };
     fetchMenu();
+    getMenu();
   }, [currentDate]);
 
   const handleButtonClick = () => {
-    if (inputValue.trim() !== "") {
-      setItems([...items, { text: inputValue, checked: false }]);
-      setInputValue("");
+    const checkedItems = items
+      .filter((item) => item.checked)
+      .map((item) => item.text);
+    // setSelectedItems(checkedItems);
+    if (checkedItems.length > 0) {
+      // alert(`Checked items: ${checkedItems.join(", ")}`);
+      // console.log(checkedItems);
+      const postChoice = async () => {
+        try {
+          const payload = {
+            menuId: menuId,
+            choices: checkedItems,
+          };
+          // console.log(payload);
+          const userToken = localStorage.getItem("token");
+          const res = await axios.post(
+            `http://localhost:5000/api/v1/choice`,
+
+            payload,
+
+            {
+              headers: {
+                Authorization: userToken,
+              },
+            }
+          );
+          // console.log(res.data.id);
+
+          // setMenuId(res.data.id);
+          // setItems([]);
+          //   setUser(res.data);
+        } catch (error) {
+          // setItems([]);
+
+          console.error("Error post choice:", error.message);
+        }
+      };
+      postChoice();
+    } else {
+      alert("No items selected");
     }
   };
 
@@ -68,43 +127,49 @@ const MenuChoose = () => {
     newItems[index].checked = !newItems[index].checked;
     setItems(newItems);
   };
-  return (
-    <div className="p-4">
-      {/* <h1>{currentDate}</h1> */}
-      <div>
-        <Button onClick={() => handleDateClick(0)}>Today</Button>
-        <Button onClick={() => handleDateClick(-1)}>Yesterday</Button>
-        <Button onClick={() => handleDateClick(1)}>Tomorrow</Button>
-      </div>
 
-      <Card className="w-96 mb-4">
-        <List>
-          {items && items.length > 0 ? (
-            items.map((item, index) => (
-              <ListItem key={index} className="flex items-center">
-                <Checkbox
-                  id={`checkbox-${index}`}
-                  label={item.text}
-                  ripple={true}
-                  checked={item.checked}
-                  onChange={() => handleCheckboxChange(index)}
-                />
-              </ListItem>
-            ))
-          ) : (
-            <p>No data</p>
-          )}
-          {}
-        </List>
-      </Card>
-      {/* <div className="w-72 mb-4">
-        <Input
-          label="Add Item"
-          value={inputValue}
-          onChange={handleInputChange}
-        />
-      </div> */}
-      <Button onClick={handleButtonClick}>Add to List</Button>
+  return (
+    <div>
+      <div className="p-4 flex">
+        <div className="flex-1">
+          <div>
+            <Button onClick={() => handleDateClick(0)}>Today</Button>
+            <Button onClick={() => handleDateClick(-1)}>Yesterday</Button>
+            <Button onClick={() => handleDateClick(1)}>Tomorrow</Button>
+          </div>
+
+          <Card className="w-96 mb-4">
+            <List>
+              {items && items.length > 0 ? (
+                items.map((item, index) => (
+                  <ListItem key={index} className="flex items-center">
+                    <Checkbox
+                      id={`checkbox-${index}`}
+                      label={item.text}
+                      ripple={true}
+                      checked={item.checked}
+                      onChange={() => handleCheckboxChange(index)}
+                    />
+                  </ListItem>
+                ))
+              ) : (
+                <p>No data</p>
+              )}
+            </List>
+          </Card>
+
+          <Button onClick={handleButtonClick}>Add to List</Button>
+        </div>
+        {/* {inputValue && <div className="mt-4 p-4 border">{inputValue}</div>} */}
+
+        <div className="flex-1 ml-4">
+          <h1>Selected Items for {currentDate}</h1>
+          {/* {console.log(userItem)} */}
+          {userItem.map((item, i) => (
+            <h1>{item}</h1>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
