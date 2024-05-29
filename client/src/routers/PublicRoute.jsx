@@ -9,9 +9,10 @@ const PublicRoute = (props) => {
   const role = localStorage.getItem("Atoken");
   useEffect(() => {
     // console.log(data?.getCurrentUser);
-    // console.log(role);
-    if (admin?.verifyAdmin === "no" || role == null) {
+    console.log(admin?.username);
+    if (admin?.username !== undefined || role) {
       localStorage.removeItem("Atoken");
+      localStorage.removeItem("token");
       navigate("/login");
     }
   }, [admin]);
