@@ -71,7 +71,7 @@ The frontend application will start running on http://localhost:5173
 ![Menu Select](https://github.com/tDipto/office-lunch-menu-management/blob/master/features/menuSelect.PNG)
 
 ### All Employee
-![All Employee](https://github.com/tDipto/office-lunch-menu-management/blob/master/features/allEmployee.PNG
+![All Employee](https://github.com/tDipto/office-lunch-menu-management/blob/master/features/allEmployee.PNG)
 
 
 ### All Items
