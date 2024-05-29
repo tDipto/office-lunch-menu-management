@@ -52,9 +52,10 @@ The backend server will start running on http://localhost:5000
 
 6. Run the Frontend Application
 In the frontend directory, start the frontend application:
-`` sh
+
+``` sh
 npm run dev
-``
+```
 The frontend application will start running on http://localhost:5173
 
 
