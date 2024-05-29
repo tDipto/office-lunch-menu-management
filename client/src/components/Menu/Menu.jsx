@@ -1,4 +1,11 @@
-import { Button, Card, Input, List, ListItem } from "@material-tailwind/react";
+import {
+  Badge,
+  Button,
+  Card,
+  Input,
+  List,
+  ListItem,
+} from "@material-tailwind/react";
 import axios from "axios";
 
 import React, { useEffect, useState } from "react";
@@ -94,11 +101,14 @@ const Menu = () => {
     <div className="p-4 flex">
       <div className="flex-1">
         <div>
-          <Button onClick={() => handleDateClick(0)}>Today</Button>
-          <Button onClick={() => handleDateClick(1)}>Tomorrow</Button>
+          <Button className="m-2" onClick={() => handleDateClick(0)}>
+            Today
+          </Button>
+          <Button className="m-2" onClick={() => handleDateClick(1)}>
+            Tomorrow
+          </Button>
         </div>
-        <Button onClick={handleButtonClick}>Add to List</Button>
-        <Button onClick={handleSubmitClick}>Submit</Button>
+
         <div className="w-72 mb-4 mt-5">
           <Input
             label="Add Item"
@@ -113,17 +123,29 @@ const Menu = () => {
             ))}
           </List>
         </Card>
+        <Button className="m-2" onClick={handleButtonClick}>
+          Add to List
+        </Button>
+        <Button className="m-2" onClick={handleSubmitClick}>
+          Submit
+        </Button>
       </div>
 
       <div className="flex-1 ml-4">
-        <h2>All Items For {currentDate}</h2>
-        {console.log(showItems)}
+        <Badge content={showItems.length}>
+          <Button>
+            <h2>All Items For {currentDate}</h2>
+          </Button>
+        </Badge>
+        {/* {console.log(showItems)} */}
         {showItems.length > 0 ? (
-          <ul>
-            {showItems.map((product) => (
-              <li>{product}</li>
-            ))}
-          </ul>
+          <Card className="w-96">
+            <List>
+              {showItems.map((product) => (
+                <ListItem>{product}</ListItem>
+              ))}
+            </List>
+          </Card>
         ) : (
           <p>No products available</p>
         )}
