@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
 
-import { UserCircleIcon } from "@heroicons/react/24/solid";
+import {
+  ArrowLeftIcon,
+  BuildingLibraryIcon,
+  InformationCircleIcon,
+  PencilIcon,
+  UserCircleIcon,
+} from "@heroicons/react/24/solid";
 import {
   Card,
   List,
@@ -8,8 +14,17 @@ import {
   ListItemPrefix,
   Typography,
 } from "@material-tailwind/react";
-import React from "react";
+import React, { useContext } from "react";
+import AuthContext from "../../contexts/AuthContext";
 const SideBar = () => {
+  const { user, admin, loading } = useContext(AuthContext);
+  // console.log(user?.email);
+  // console.log(admin?.username);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // Replace
+    localStorage.removeItem("Atoken"); // Replace
+  };
   // const [open, setOpen] = React.useState(0);
 
   // const handleOpen = (value) => {
@@ -19,148 +34,62 @@ const SideBar = () => {
     <Card className="h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
       <div className="mb-2 p-4">
         <Typography variant="h5" color="blue-gray">
-          Sidebar
+          Lunch Management
         </Typography>
       </div>
       <List>
-        {/* <Accordion
-          open={open === 1}
-          icon={
-            <ChevronDownIcon
-              strokeWidth={2.5}
-              className={`mx-auto h-4 w-4 transition-transform ${
-                open === 1 ? "rotate-180" : ""
-              }`}
-            />
-          }
-        >
-          <ListItem className="p-0" selected={open === 1}>
-            <AccordionHeader
-              onClick={() => handleOpen(1)}
-              className="border-b-0 p-3"
-            >
+        {admin?.username && (
+          <Link to="/totalItems">
+            <ListItem>
               <ListItemPrefix>
-                <PresentationChartBarIcon className="h-5 w-5" />
+                <InformationCircleIcon className="h-5 w-5" />
               </ListItemPrefix>
-              <Typography color="blue-gray" className="mr-auto font-normal">
-                Dashboard
-              </Typography>
-            </AccordionHeader>
-          </ListItem>
-          <AccordionBody className="py-1">
-            <List className="p-0">
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                Analytics
-              </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                Reporting
-              </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                Projects
-              </ListItem>
-            </List>
-          </AccordionBody>
-        </Accordion> */}
+              Total Items
+            </ListItem>
+          </Link>
+        )}
 
-        {/* <Accordion
-          open={open === 2}
-          icon={
-            <ChevronDownIcon
-              strokeWidth={2.5}
-              className={`mx-auto h-4 w-4 transition-transform ${
-                open === 2 ? "rotate-180" : ""
-              }`}
-            />
-          }
-        >
-          <ListItem className="p-0" selected={open === 2}>
-            <AccordionHeader
-              onClick={() => handleOpen(2)}
-              className="border-b-0 p-3"
-            >
+        {admin?.username && (
+          <Link to="/employee">
+            <ListItem>
               <ListItemPrefix>
-                <ShoppingBagIcon className="h-5 w-5" />
+                <BuildingLibraryIcon className="h-5 w-5" />
               </ListItemPrefix>
-              <Typography color="blue-gray" className="mr-auto font-normal">
-                E-Commerce
-              </Typography>
-            </AccordionHeader>
-          </ListItem>
-          <AccordionBody className="py-1">
-            <List className="p-0">
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                Orders
-              </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                Products
-              </ListItem>
-            </List>
-          </AccordionBody>
-        </Accordion> */}
-        {/* <ListItem>
-          <ListItemPrefix>
-            <InboxIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          Inbox
-          <ListItemSuffix>
-            <Chip
-              value="14"
-              size="sm"
-              variant="ghost"
-              color="blue-gray"
-              className="rounded-full"
-            />
-          </ListItemSuffix>
-        </ListItem> */}
+              See All Employee
+            </ListItem>
+          </Link>
+        )}
 
-        <Link to="/login">
+        {user?.email && (
+          <Link to="/menuChoose">
+            <ListItem>
+              <ListItemPrefix>
+                <PencilIcon className="h-5 w-5" />
+              </ListItemPrefix>
+              Menu Choose
+            </ListItem>
+          </Link>
+        )}
+        {admin?.username && (
+          <Link to="/menu">
+            <ListItem>
+              <ListItemPrefix>
+                <PencilIcon className="h-5 w-5" />
+              </ListItemPrefix>
+              Menu Select
+            </ListItem>
+          </Link>
+        )}
+
+        <Link to="/">
           <ListItem>
             <ListItemPrefix>
               <UserCircleIcon className="h-5 w-5" />
             </ListItemPrefix>
-            Total Items
+            Profile
           </ListItem>
         </Link>
-        <Link to="/login">
-          <ListItem>
-            <ListItemPrefix>
-              <UserCircleIcon className="h-5 w-5" />
-            </ListItemPrefix>
-            See All Employee
-          </ListItem>
-        </Link>
-        <Link to="/login">
-          <ListItem>
-            <ListItemPrefix>
-              <UserCircleIcon className="h-5 w-5" />
-            </ListItemPrefix>
-            Menu Choose
-          </ListItem>
-        </Link>
-        <Link to="/login">
-          <ListItem>
-            <ListItemPrefix>
-              <UserCircleIcon className="h-5 w-5" />
-            </ListItemPrefix>
-            Menu Select
-          </ListItem>
-        </Link>
-        <Link to="/login">
+        {/* <Link to="/login">
           <ListItem>
             <ListItemPrefix>
               <UserCircleIcon className="h-5 w-5" />
@@ -175,11 +104,11 @@ const SideBar = () => {
             </ListItemPrefix>
             Signup
           </ListItem>
-        </Link>
-        <Link to="/signup">
+        </Link> */}
+        <Link to="/login" onClick={handleLogout}>
           <ListItem>
             <ListItemPrefix>
-              <UserCircleIcon className="h-5 w-5" />
+              <ArrowLeftIcon className="h-5 w-5" />
             </ListItemPrefix>
             Logout
           </ListItem>

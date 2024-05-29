@@ -14,7 +14,8 @@ const {
 router
   .route("/")
   .post(verifyAdminToken, verifyAdminMiddleware, postMenu)
-  .get(getMenuByDate)
   .put(verifyAdminToken, verifyAdminMiddleware, editMenu);
+
+router.route("/:id").get(getMenuByDate);
 
 module.exports = router;

@@ -9,30 +9,28 @@ import {
 } from "@material-tailwind/react";
 import axios from "axios";
 import { useFormik } from "formik";
-
 import React from "react";
+
 import { Link, useNavigate } from "react-router-dom";
-const Signup = () => {
+const AdminLogin = () => {
   const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
       username: "",
-      email: "",
       password: "",
     },
     onSubmit: async (values) => {
-      // alert(JSON.stringify(values, null, 2));
-      // console.log(JSON.stringify(values));
-
+      //   alert(JSON.stringify(values, null, 2));
       try {
         const result = await axios.post(
-          "http://localhost:5000/api/v1/employee/auth/register",
+          "http://localhost:5000/api/v1/admin/auth/login",
           values
         );
-        const token = await result?.data;
-        navigate("/login");
-        // console.log(token);
+        const res = await result?.data;
+        // console.log(res.token);
+        localStorage.setItem("Atoken", res.token);
+        navigate("/");
       } catch (e) {
         console.error(e.response.data);
       }
@@ -46,7 +44,7 @@ const Signup = () => {
         className="mb-4 grid h-28 place-items-center"
       >
         <Typography variant="h3" color="white">
-          Registratioin
+          Admin
         </Typography>
       </CardHeader>
       <form onSubmit={formik.handleSubmit}>
@@ -54,15 +52,8 @@ const Signup = () => {
           <Input
             id="username"
             onChange={formik.handleChange}
-            value={formik.values.username}
-            label="Username"
-            size="lg"
-          />
-          <Input
-            id="email"
-            onChange={formik.handleChange}
             value={formik.values.email}
-            label="Email"
+            label="UserName"
             size="lg"
           />
           <Input
@@ -73,14 +64,16 @@ const Signup = () => {
             label="Password"
             size="lg"
           />
+          {/* <div className="-ml-2.5">
+          <Checkbox label="Remember Me" />
+        </div> */}
         </CardBody>
         <CardFooter className="pt-0">
           <Button type="submit" variant="gradient" fullWidth>
-            Sign Up
+            Enter
           </Button>
-
           <Typography variant="small" className="mt-6 flex justify-center">
-            Already Have an account?
+            Employee?
             <Link to="/login">
               <Typography
                 as="a"
@@ -89,7 +82,7 @@ const Signup = () => {
                 color="blue-gray"
                 className="ml-1 font-bold"
               >
-                Sign In
+                Here
               </Typography>
             </Link>
           </Typography>
@@ -99,4 +92,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default AdminLogin;

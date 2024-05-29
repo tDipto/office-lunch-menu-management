@@ -38,9 +38,9 @@ model Menu {
 
 model Choice {
   id         String      @id @default(uuid())
-  employee   Employee @relation(fields: [employeeId], references: [id])
+  employee   Employee @relation(fields: [employeeId], references: [id],onDelete: Cascade)
   employeeId String
-  menu       Menu     @relation(fields: [menuId], references: [id])
+  menu       Menu     @relation(fields: [menuId], references: [id],onDelete: Cascade)
   menuId     String
   choices     String[]
 
