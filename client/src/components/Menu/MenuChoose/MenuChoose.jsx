@@ -1,6 +1,8 @@
 import {
+  Badge,
   Button,
   Card,
+  CardBody,
   Checkbox,
   List,
   ListItem,
@@ -163,11 +165,27 @@ const MenuChoose = () => {
         {/* {inputValue && <div className="mt-4 p-4 border">{inputValue}</div>} */}
 
         <div className="flex-1 ml-4">
-          <h1>Selected Items for {currentDate}</h1>
+          <Badge content={userItem.length}>
+            <Button>
+              <h1>Selected Items for {currentDate}</h1>
+            </Button>
+          </Badge>
           {/* {console.log(userItem)} */}
-          {userItem.map((item, i) => (
+          {/* {userItem.map((item, i) => (
             <h1>{item}</h1>
-          ))}
+          ))} */}
+
+          {userItem.length > 0 ? (
+            <CardBody className="w-96">
+              <List>
+                {userItem.map((item, i) => (
+                  <ListItem>{item}</ListItem>
+                ))}
+              </List>
+            </CardBody>
+          ) : (
+            <p>No products available</p>
+          )}
         </div>
       </div>
     </div>

@@ -9,6 +9,8 @@ import Profile from "../components/Profile/Profile";
 import Signup from "../components/Signup/Signup";
 import TotalItems from "../components/TotalItems/TotalItems";
 import Main from "../layout/Main";
+import PrivateRoute from "./PrivateRoute";
+import PublicRoute from "./PublicRoute";
 
 const AppRoutes = () => {
   return (
@@ -23,10 +25,19 @@ const AppRoutes = () => {
             element={<Profile />}
             // element={<PrivateRoute Component={Profile} />}
           />
-          <Route path="menu" element={<Menu />} />
-          <Route path="menuChoose" element={<MenuChoose />} />
-          <Route path="employee" element={<EmployeeList />} />
-          <Route path="totalItems" element={<TotalItems />} />
+          <Route path="menu" element={<PrivateRoute Component={Menu} />} />
+          <Route
+            path="menuChoose"
+            element={<PublicRoute Component={MenuChoose} />}
+          />
+          <Route
+            path="employee"
+            element={<PrivateRoute Component={EmployeeList} />}
+          />
+          <Route
+            path="totalItems"
+            element={<PrivateRoute Component={TotalItems} />}
+          />
         </Route>
 
         <Route path="/login" element={<Login />} />

@@ -18,6 +18,8 @@ import React, { useContext } from "react";
 import AuthContext from "../../contexts/AuthContext";
 const SideBar = () => {
   const { user, admin, loading } = useContext(AuthContext);
+  // console.log(user?.email);
+  // console.log(admin?.username);
 
   const handleLogout = () => {
     localStorage.removeItem("token"); // Replace
@@ -36,38 +38,49 @@ const SideBar = () => {
         </Typography>
       </div>
       <List>
-        <Link to="/totalItems">
-          <ListItem>
-            <ListItemPrefix>
-              <InformationCircleIcon className="h-5 w-5" />
-            </ListItemPrefix>
-            Total Items
-          </ListItem>
-        </Link>
-        <Link to="/employee">
-          <ListItem>
-            <ListItemPrefix>
-              <BuildingLibraryIcon className="h-5 w-5" />
-            </ListItemPrefix>
-            See All Employee
-          </ListItem>
-        </Link>
-        <Link to="/menuChoose">
-          <ListItem>
-            <ListItemPrefix>
-              <PencilIcon className="h-5 w-5" />
-            </ListItemPrefix>
-            Menu Choose
-          </ListItem>
-        </Link>
-        <Link to="/menu">
-          <ListItem>
-            <ListItemPrefix>
-              <PencilIcon className="h-5 w-5" />
-            </ListItemPrefix>
-            Menu Select
-          </ListItem>
-        </Link>
+        {admin?.username && (
+          <Link to="/totalItems">
+            <ListItem>
+              <ListItemPrefix>
+                <InformationCircleIcon className="h-5 w-5" />
+              </ListItemPrefix>
+              Total Items
+            </ListItem>
+          </Link>
+        )}
+
+        {admin?.username && (
+          <Link to="/employee">
+            <ListItem>
+              <ListItemPrefix>
+                <BuildingLibraryIcon className="h-5 w-5" />
+              </ListItemPrefix>
+              See All Employee
+            </ListItem>
+          </Link>
+        )}
+
+        {user?.email && (
+          <Link to="/menuChoose">
+            <ListItem>
+              <ListItemPrefix>
+                <PencilIcon className="h-5 w-5" />
+              </ListItemPrefix>
+              Menu Choose
+            </ListItem>
+          </Link>
+        )}
+        {admin?.username && (
+          <Link to="/menu">
+            <ListItem>
+              <ListItemPrefix>
+                <PencilIcon className="h-5 w-5" />
+              </ListItemPrefix>
+              Menu Select
+            </ListItem>
+          </Link>
+        )}
+
         <Link to="/">
           <ListItem>
             <ListItemPrefix>

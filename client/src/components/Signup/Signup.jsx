@@ -32,7 +32,7 @@ const Signup = () => {
         );
         const token = await result?.data;
         navigate("/login");
-        console.log(token);
+        // console.log(token);
       } catch (e) {
         console.error(e.response.data);
       }

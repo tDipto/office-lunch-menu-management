@@ -31,7 +31,7 @@ exports.postMenu = async (data) => {
 
 exports.getMenuByDate = async (date) => {
   // const { date } = data;
-  console.log(date);
+  // console.log(date);
   try {
     const formattedDate = `${date}T00:00:00Z`;
     const menu = await prisma.menu.findFirst({
