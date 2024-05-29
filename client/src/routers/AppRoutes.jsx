@@ -9,6 +9,7 @@ import Profile from "../components/Profile/Profile";
 import Signup from "../components/Signup/Signup";
 import TotalItems from "../components/TotalItems/TotalItems";
 import Main from "../layout/Main";
+import PrivateRoute from "./PrivateRoute";
 
 const AppRoutes = () => {
   return (
@@ -16,7 +17,11 @@ const AppRoutes = () => {
       <Routes>
         <Route path="/" element={<Main />}>
           <Route index element={<Login />} />
-          <Route path="profile" element={<Profile />} />
+          {/* <Route path="profile" element={<Profile />} /> */}
+          <Route
+            path="/profile"
+            element={<PrivateRoute Component={Profile} />}
+          />
           <Route path="menu" element={<Menu />} />
           <Route path="menuChoose" element={<MenuChoose />} />
           <Route path="/employee" element={<EmployeeList />} />

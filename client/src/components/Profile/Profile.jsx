@@ -28,10 +28,10 @@ const Profile = () => {
       </CardHeader> */}
       <CardBody className="text-center">
         <Typography variant="h4" color="blue-gray" className="mb-2">
-          {userInfo?.username}
+          {userInfo?.username} {adminInfo?.username}
         </Typography>
         <Typography color="blue-gray" className="font-medium" textGradient>
-          {userInfo?.email} {userInfo?.verifyAdmin}
+          {userInfo?.email} {adminInfo?.verifyAdmin}
         </Typography>
       </CardBody>
       <CardFooter className="flex justify-center gap-7 pt-2">
