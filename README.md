@@ -56,3 +56,22 @@ In the frontend directory, start the frontend application:
 npm run dev
 ``
 The frontend application will start running on http://localhost:5173
+
+
+
+
+## Feature
+
+### Menu Add
+![Menu Add](https://github.com/tDipto/office-lunch-menu-management/blob/master/features/menuAdd.PNG)
+
+
+### Menu Select
+![Menu Select](https://github.com/tDipto/office-lunch-menu-management/blob/master/features/menuSelect.PNG)
+
+### All Employee
+![All Employee](https://github.com/tDipto/office-lunch-menu-management/blob/master/features/allEmployee.PNG
+
+
+### All Items
+![All Items](https://github.com/tDipto/office-lunch-menu-management/blob/master/features/allItems.PNG)
