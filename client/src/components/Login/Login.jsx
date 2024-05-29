@@ -48,7 +48,7 @@ const Login = () => {
         className="mb-4 grid h-28 place-items-center"
       >
         <Typography variant="h3" color="white">
-          Sign In
+          Employee
         </Typography>
       </CardHeader>
       <form onSubmit={formik.handleSubmit}>

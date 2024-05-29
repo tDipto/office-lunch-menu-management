@@ -173,7 +173,7 @@ const SideBar = () => {
             Menu Select
           </ListItem>
         </Link>
-        <Link to="/profile">
+        <Link to="/">
           <ListItem>
             <ListItemPrefix>
               <UserCircleIcon className="h-5 w-5" />

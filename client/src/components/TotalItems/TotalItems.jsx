@@ -1,6 +1,8 @@
 import { Button } from "@material-tailwind/react";
 import axios from "axios";
+
 import { useEffect, useState } from "react";
+import TotalItemCard from "./TotalItemCard/TotalItemCard";
 
 const TotalItems = () => {
   const [user, setUser] = useState(null);
@@ -98,9 +100,10 @@ const TotalItems = () => {
       {hasData ? (
         <ul>
           {Object.entries(choiceCount).map(([choice, count]) => (
-            <li key={choice}>
-              {choice}: {count}
-            </li>
+            // <li key={choice}>
+            //   {choice}: {count}
+            // </li>
+            <TotalItemCard choice={choice} count={count} />
           ))}
         </ul>
       ) : (
