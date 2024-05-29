@@ -28,7 +28,7 @@ npm install
 ```
 
 3. Set Up Environment Variables
-In both the backend and frontend directories, create a .env file and define the following environment variables:
+In  the backend  directory, create a .env file and define the following environment variables:
 
 ### Backend (.env file in the backend directory)
 ``` sh
