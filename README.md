@@ -1,9 +1,9 @@
 # Office Lunch Menu Management System
 
 ## Technologies Used
-Backend: Express.js
-Frontend: React.js
-Database: PostgreSQL
+**Backend:** Express.js  
+**Frontend:** React.js  
+**Database:** PostgreSQL
 
 # Running the Project
 Follow these steps to run the project:
