@@ -3,9 +3,9 @@
 The Office Lunch Menu Management System is a web application designed to streamline the process of managing daily lunch options in an office environment. Admins can easily add and manage daily lunch menus, while employees can view these menus and select their lunch preferences. This system aims to simplify the lunch ordering process and ensure that all employees' choices are recorded efficiently.
 
 ## Technologies Used
-### Backend: Express.js
-### Frontend: React.js
-### Database: PostgreSQL
+Backend: Express.js
+Frontend: React.js
+Database: PostgreSQL
 
 # Running the Project
 Follow these steps to run the project:
