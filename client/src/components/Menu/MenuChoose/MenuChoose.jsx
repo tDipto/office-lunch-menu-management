@@ -184,7 +184,7 @@ const MenuChoose = () => {
               </List>
             </CardBody>
           ) : (
-            <p>No products available</p>
+            <p>No Item</p>
           )}
         </div>
       </div>

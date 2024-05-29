@@ -91,7 +91,6 @@ const TotalItems = () => {
 
   return (
     <div>
-      <h1>Total Items</h1>
       <div>
         <Button onClick={() => handleDateClick(0)}>Today</Button>
         <Button onClick={() => handleDateClick(-1)}>Yesterday</Button>

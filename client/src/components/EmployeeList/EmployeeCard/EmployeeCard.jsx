@@ -1,7 +1,7 @@
 import {
   ChevronDownIcon,
   ChevronRightIcon,
-  PresentationChartBarIcon,
+  UserIcon,
 } from "@heroicons/react/24/solid";
 import {
   Accordion,
@@ -40,7 +40,7 @@ const EmployeeCard = ({ data }) => {
               className="border-b-0 p-3"
             >
               <ListItemPrefix>
-                <PresentationChartBarIcon className="h-5 w-5" />
+                <UserIcon className="h-5 w-5" />
               </ListItemPrefix>
               <Typography color="blue-gray" className="mr-auto font-normal">
                 {data.employee.username}

@@ -1,7 +1,7 @@
 import {
   ChevronDownIcon,
   ChevronRightIcon,
-  PresentationChartBarIcon,
+  TagIcon,
 } from "@heroicons/react/24/solid";
 import {
   Accordion,
@@ -40,7 +40,7 @@ const TotalItemCard = ({ choice, count }) => {
             className="border-b-0 p-3"
           >
             <ListItemPrefix>
-              <PresentationChartBarIcon className="h-5 w-5" />
+              <TagIcon className="h-5 w-5" />
             </ListItemPrefix>
             <Typography color="blue-gray" className="mr-auto font-normal">
               {choice}
