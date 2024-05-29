@@ -59,7 +59,8 @@ npm run dev
 The frontend application will start running on http://localhost:5173
 
 
-
+# ER Diagram
+![ER](https://github.com/tDipto/office-lunch-menu-management/blob/master/features/ER.PNG)
 
 # Features
 
