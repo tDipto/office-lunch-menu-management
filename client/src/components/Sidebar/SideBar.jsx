@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
 
-import { UserCircleIcon } from "@heroicons/react/24/solid";
+import {
+  ArrowLeftIcon,
+  BuildingLibraryIcon,
+  InformationCircleIcon,
+  PencilIcon,
+  UserCircleIcon,
+} from "@heroicons/react/24/solid";
 import {
   Card,
   List,
@@ -8,8 +14,11 @@ import {
   ListItemPrefix,
   Typography,
 } from "@material-tailwind/react";
-import React from "react";
+import React, { useContext } from "react";
+import AuthContext from "../../contexts/AuthContext";
 const SideBar = () => {
+  const { user, admin, loading } = useContext(AuthContext);
+
   const handleLogout = () => {
     localStorage.removeItem("token"); // Replace
     localStorage.removeItem("Atoken"); // Replace
@@ -135,7 +144,7 @@ const SideBar = () => {
         <Link to="/totalItems">
           <ListItem>
             <ListItemPrefix>
-              <UserCircleIcon className="h-5 w-5" />
+              <InformationCircleIcon className="h-5 w-5" />
             </ListItemPrefix>
             Total Items
           </ListItem>
@@ -143,7 +152,7 @@ const SideBar = () => {
         <Link to="/employee">
           <ListItem>
             <ListItemPrefix>
-              <UserCircleIcon className="h-5 w-5" />
+              <BuildingLibraryIcon className="h-5 w-5" />
             </ListItemPrefix>
             See All Employee
           </ListItem>
@@ -151,7 +160,7 @@ const SideBar = () => {
         <Link to="/menuChoose">
           <ListItem>
             <ListItemPrefix>
-              <UserCircleIcon className="h-5 w-5" />
+              <PencilIcon className="h-5 w-5" />
             </ListItemPrefix>
             Menu Choose
           </ListItem>
@@ -159,7 +168,7 @@ const SideBar = () => {
         <Link to="/menu">
           <ListItem>
             <ListItemPrefix>
-              <UserCircleIcon className="h-5 w-5" />
+              <PencilIcon className="h-5 w-5" />
             </ListItemPrefix>
             Menu Select
           </ListItem>
@@ -191,7 +200,7 @@ const SideBar = () => {
         <Link to="/login" onClick={handleLogout}>
           <ListItem>
             <ListItemPrefix>
-              <UserCircleIcon className="h-5 w-5" />
+              <ArrowLeftIcon className="h-5 w-5" />
             </ListItemPrefix>
             Logout
           </ListItem>
