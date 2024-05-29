@@ -61,7 +61,7 @@ The frontend application will start running on http://localhost:5173
 
 
 
-## Feature
+# Features
 
 ### Menu Add
 ![Menu Add](https://github.com/tDipto/office-lunch-menu-management/blob/master/features/menuAdd.PNG)
